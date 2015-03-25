@@ -1,0 +1,31 @@
+{
+  "name": "loomap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "less": "lessc src/less/main.less > src/www/main.css",
+    "build": "npm run less && browserify src/app/app.jsx | uglifyjs -cm > src/www/app.js",
+    "watch": "watchify src/app/app.jsx -o src/www/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "less": "^2.4.0",
+    "reactify": "^1.1.0",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^2.6.1"
+  },
+  "dependencies": {
+    "material-ui": "^0.7.1",
+    "react": "^0.12.2",
+    "react-tap-event-plugin": "^0.1.4"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
