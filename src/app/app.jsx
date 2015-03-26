@@ -1,7 +1,9 @@
 (function () {
   var React = require('react');
+  var Router = require('react-router');
+  var routes = require('./routes.jsx');
   var injectTapEventPlugin = require("react-tap-event-plugin");
-  var Main = require('./components/main.jsx'); // Our custom react component
+  
 
   //Needed for React Developer Tools
   window.React = React;
@@ -12,8 +14,8 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  // Render the main app react component into the document body. 
-  // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-  React.render(<Main />, document.body);
-
+  Router 
+    .run(routes, function (Handler) {
+      React.render(<Handler/>, document.body);
+    });
 })();

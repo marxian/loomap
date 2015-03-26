@@ -1,31 +1,37 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 var React = require('react');
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
 var mui = require('material-ui');
-var RaisedButton = mui.RaisedButton;
 var Toggle = mui.Toggle;
+var AppBar = mui.AppBar;
+var AppCanvas = mui.AppCanvas;
+var LeftNav = require('./left-nav.jsx');
 
 var Main = React.createClass({
-
+  contextTypes: {
+    router: React.PropTypes.func
+  },
   render: function() {
 
     return (
-      <div className="example-page">
+      <AppCanvas predefinedLayout={1}>
 
-        <h1>material-ui</h1>
-        <h2>example project</h2>
-
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
-        <Toggle
-          name="toggleName1"
-          value="toggleValue1"
-          label="activate thrusters" />
-      </div>
+        <AppBar
+          className="mui-dark-theme"
+          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          title="LooMap"
+          zDepth={0}>
+        </AppBar>
+        <LeftNav ref="leftNav" />
+        <RouteHandler />      
+      </AppCanvas>
     );
   },
 
-  _handleTouchTap: function() {
-    alert('1-2-3-4-5');
+  _onMenuIconButtonTouchTap: function() {
+    this.refs.leftNav.toggle();
   }
   
 });
